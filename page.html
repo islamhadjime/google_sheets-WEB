@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ  +4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  <?!= include("style"); ?>
+</head>
+<body>
+  <div id="app">
+    <p class="isMaps"  style="opacity:0;"><?= isMaps; ?></p>
+    <div class="wrapper">
+      <div class="wrapper__dashboard">
+        <div class="wrapper__dashboard-logo">
+          <div class="wrapper__dashboard-img">
+              <img src="https://api.freelogodesign.org/assets/thumb/logo/5301_400.png?t=637674893820000000" alt="Отдел Образования &&& Муниципального Района">
+          </div>
+          <h3>МУ "Отдел Образования "*****" <br> Муниципального Района"</h3>
+        </div>
+        <div class="wrapper__dasboard-list">
+          <div class="wrapper__dasboard-item">
+            <div class="wrapper__dasboard-title">
+              <? if (isMaps == "По республику" || isMaps == "Отчет Дневник") { ?>
+                Активность Школ
+              <? }  else { ?>
+               уроков с Д/З
+              <? } ?>
+            </div>
+            <div class="wrapper__dasboard-perform">
+              <span><?= topData[0]; ?> %</span>
+              <span>школ выполняют</span>
+            </div>
+            <div class="wrapper__dasboard-notperform">
+              <span><?= Math.floor(100 - topData[0]); ?> %</span>
+              <span>школы не выполняют</span>
+            </div>
+              <div class="wrapper__dasboard-infor">
+                <div class="wrapper__dasboard-infor">
+                  <i class="bi bi-question-circle"></i>
+                </div>
+                <div class="wrapper__dasboard-contentsbg">
+                  <h5>Уроков с ДЗ </h5>
+                  <p>  количество уроков, к которым выдано ДЗ) * 100
+                    / (количество уроков в расписании за выбранный временной промежуток
+                    </p>
+                </div>
+              </div>
+          </div>
+          <div class="wrapper__dasboard-item">
+            <div class="wrapper__dasboard-title">
+              <? if (isMaps == "По республику" || isMaps == "Отчет Дневник") { ?>
+                Наполненность расписания
+              <? }  else { ?>
+               Своевременная выдача ДЗ, %
+              <? } ?>
+            </div>
+            <div class="wrapper__dasboard-perform">
+              <span><?= topData[1]; ?> %</span>
+              <span>школ выполняют</span>
+            </div>
+            <div class="wrapper__dasboard-notperform">
+              <span><?= Math.floor(100 - topData[1]); ?> %</span>
+              <span>школы не выполняют</span>
+            </div>
+             <div class="wrapper__dasboard-infor">
+                <div class="wrapper__dasboard-infor">
+                  <i class="bi bi-question-circle"></i>
+                </div>
+                <div class="wrapper__dasboard-contentsbg">
+                  <h5>Своевременная выдача ДЗ</h5>
+                  <p>   (количество всех уроков со своевременно выданными ДЗ)  /
+                        (количество всех уроков) * 100. Подробнее о показателе
+                         рассказано в статье «Логика расчета показателя
+                         «Своевременная выдача ДЗ» с примерами».
+                  </p>
+                </div>
+              </div>
+          </div>
+          <div class="wrapper__dasboard-item">
+            <div class="wrapper__dasboard-title">
+              <? if (isMaps == "По республику" || isMaps == "Отчет Дневник") { ?>
+                Планирование уроков
+              <? }  else { ?>
+                % заполнения тем
+              <? } ?>
+            </div>
+            <div class="wrapper__dasboard-perform">
+              <span><?= topData[2]; ?> %</span>
+              <span>школ выполняют</span>
+            </div>
+            <div class="wrapper__dasboard-notperform">
+              <span><?= Math.floor(100 - topData[2]); ?> %</span>
+              <span>школы не выполняют</span>
+            </div>
+              <div class="wrapper__dasboard-infor">
+                  <div class="wrapper__dasboard-infor">
+                    <i class="bi bi-question-circle"></i>
+                  </div>
+                  <div class="wrapper__dasboard-contentsbg">
+                    <h5>Заполнения тем</h5>
+                    <p> (количество уроков, на которые записаны темы) *100 /
+                        (количество уроков в расписании за выбранный временной промежуток).
+                        </p>
+                  </div>
+                </div>
+
+
+          </div>
+          <div class="wrapper__dasboard-item">
+            <div class="wrapper__dasboard-title">
+              <? if (isMaps == "По республику" || isMaps == "Отчет Дневник") { ?>
+                Ведение классных журналов
+              <? }  else { ?>
+                Ведение планирования, %
+              <? } ?>
+            </div>
+            <div class="wrapper__dasboard-perform">
+              <span><?= topData[3]; ?> %</span>
+              <span>школ выполняют</span>
+            </div>
+            <div class="wrapper__dasboard-notperform">
+              <span><?= Math.floor(100 - topData[3]); ?> %</span>
+              <span>школы не выполняют</span>
+            </div>
+              <div class="wrapper__dasboard-infor">
+                <div class="wrapper__dasboard-infor">
+                  <i class="bi bi-question-circle"></i>
+                </div>
+                <div class="wrapper__dasboard-contentsbg">
+                  <h5>Ведение планирования</h5>
+                  <p>  (количество уроков, к которым выдано хотя бы одно ДЗ
+                       или в которых заполнена тема урока) * 100 /
+                       (количество уроков в расписании за выбранный временной промежуток).
+                  </p>
+                </div>
+             </div>
+          </div>
+
+          <div class="wrapper__dasboard-item">
+            <div class="wrapper__dasboard-title">
+              <? if (isMaps == "По республику" || isMaps == "Отчет Дневник") { ?>
+                Своевременное выставление оценок
+              <? }  else { ?>
+                Ведение журнала, %
+              <? } ?>
+            </div>
+            <div class="wrapper__dasboard-perform">
+              <span><?= topData[4]; ?> %</span>
+              <span>школ выполняют</span>
+            </div>
+            <div class="wrapper__dasboard-notperform">
+              <span><?= Math.floor(100 - topData[4]); ?> %</span>
+              <span>школы не выполняют</span>
+            </div>
+              <div class="wrapper__dasboard-infor">
+                  <div class="wrapper__dasboard-infor">
+                    <i class="bi bi-question-circle"></i>
+                  </div>
+                  <div class="wrapper__dasboard-contentsbg">
+                    <h5>Ведение журнала</h5>
+                    <p> (количество уроков за период, в которых стоит хотя бы
+                        одна оценка, отметка о посещаемости, комментарий к уроку,
+                        поставлена галочка о проведении урока) * 100
+                        / (количество уроков в расписании за выбранный временной промежуток) </p>
+                  </div>
+                </div>
+          </div>
+
+          <div class="wrapper__dasboard-item">
+              <div class="wrapper__dasboard-title">
+                <? if (isMaps == "По республику" || isMaps == "Отчет Дневник") { ?>
+                  Своевременная выдача ДЗ
+                <? }  else { ?>
+                  Своевременное ведение журнала, %
+                <? } ?>
+              </div>
+              <div class="wrapper__dasboard-perform">
+                <span><?= topData[5]; ?> %</span>
+                <span>школ выполняют</span>
+              </div>
+              <div class="wrapper__dasboard-notperform">
+                <span><?= Math.floor(100 - topData[5]); ?> %</span>
+                <span>школы не выполняют</span>
+              </div>
+                <div class="wrapper__dasboard-infor">
+                  <div class="wrapper__dasboard-infor">
+                    <i class="bi bi-question-circle"></i>
+                  </div>
+                  <div class="wrapper__dasboard-contentsbg">
+                    <h5>Своевременное ведение журнала</h5>
+                    <p>
+                      (количество своевременно выставленных оценок за определенные виды работ на
+                      уроках за отчетный период) * 100 / (общее количество выставленных оценок за
+                      определенные виды работ на уроках за период). Подробнее о показателе рассказано в
+                      статье «Логика расчета показателя «Своевременное ведение журнала» с примерами». </p>
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="wrapper__card">
+        <h2 class="wrapper__title">
+          Статистика
+          <b style="margin-left:10px;">
+              <? if (isMaps == "По республику" || isMaps == "Отчет Дневник") { ?>
+                <?= setIngdata.timeData; ?>
+              <? } else { ?>
+                <?= setIngdata.timeStatic; ?>
+              <? } ?>
+            </b>
+        </h2>
+        <ul class="wrapper__list">
+          <li class="wrapper__item">
+            <a  href="<?= ScriptApp.getService().getUrl();?>?v=otrs" class="wrapper__link">
+              <div class="wrapper__link-yel">
+                <i class="bi bi-calendar3"></i>
+              </div>
+              По республику
+            </a>
+          </li>
+          <li class="wrapper__item">
+            <a  href="<?= ScriptApp.getService().getUrl();?>?v=dnevnik" class="wrapper__link">
+              <div class="wrapper__link-red">
+                <i class="bi bi-calendar3"></i>
+              </div>
+              Отчет Дневник
+            </a>
+          </li>
+          <li class="wrapper__item">
+            <a  href="<?= ScriptApp.getService().getUrl();?>?v=pn" class="wrapper__link">
+              <div class="wrapper__link-bl">
+                <i class="bi bi-calendar3"></i>
+              </div>
+              Пондельник
+            </a>
+          </li>
+          <li class="wrapper__item ">
+            <a href="<?= ScriptApp.getService().getUrl();?>?v=vt" class="wrapper__link">
+              <div class="wrapper__link-bl">
+                <i class="bi bi-calendar3"></i>
+              </div>
+              Вторник
+            </a>
+          </li>
+          <li class="wrapper__item ">
+            <a href="<?= ScriptApp.getService().getUrl();?>?v=sr" class="wrapper__link">
+              <div class="wrapper__link-yel">
+                <i class="bi bi-calendar3"></i>
+              </div>
+              Среда
+            </a>
+          </li>
+          <li class="wrapper__item">
+            <a href="<?= ScriptApp.getService().getUrl();?>?v=cht" class="wrapper__link">
+              <div class="wrapper__link-yel">
+                <i class="bi bi-calendar3"></i>
+              </div>
+              Четверг
+            </a>
+          </li>
+          <li class="wrapper__item">
+            <a href="<?= ScriptApp.getService().getUrl();?>?v=pt" class="wrapper__link">
+              <div class="wrapper__link-red">
+                <i class="bi bi-calendar3"></i>
+              </div>
+              Пятница
+            </a>
+          </li>
+          <li class="wrapper__item">
+            <a href="<?= ScriptApp.getService().getUrl();?>?v=sb" class="wrapper__link">
+              <div class="wrapper__link-bl">
+                <i class="bi bi-calendar3"></i>
+              </div>
+              Суббота
+            </a>
+          </li>
+        </ul>
+        <?!= include('maps'); ?>
+      </div>
+    </div>
+    <div class="details">
+      <div class="details__grop">
+        <div class="details__content">
+          <h3 class="details__content-title">
+            Отчет "Электронный журнал"
+          </h3>
+          <p class="details__content-text">
+            Общий места Электронном журнали по всей республики
+          </p>
+        </div>
+        <div class="details__cards">
+          <div class="details__card">
+            <div class="details__card-icon">
+              <i class="bi bi-bookmarks-fill"></i>
+            </div>
+            <p class="details__card-title">
+              Активность школ</p>
+              <div class="details__card-list">
+                <h3 class="details__card-number">
+                 <?= setIngdata.listRount[0]; ?>
+                </h3>
+                <? if (setIngdata.listRount[0] > 1) {?>
+                  <div class="details__card-ws">
+                  <i class="bi bi-arrow-down-circle"></i>
+                </div>
+                <? } ?>
+              </div>
+          </div>
+          <div class="details__card">
+              <div class="details__card-icon">
+                <i class="bi bi-bookmarks-fill"></i>
+              </div>
+              <p class="details__card-title">
+                Наполненность расписания</p>
+              <div class="details__card-list">
+                <h3 class="details__card-number">
+                 <?= setIngdata.listRount[1]; ?>
+                </h3>
+                <? if (setIngdata.listRount[1] > 1) {?>
+                  <div class="details__card-ws">
+                  <i class="bi bi-arrow-down-circle"></i>
+                </div>
+                <? } ?>
+              </div>
+          </div>
+          <div class="details__card">
+                <div class="details__card-icon">
+                  <i class="bi bi-bookmarks-fill"></i>
+                </div>
+                <p class="details__card-title">
+                  Планирование уроков</p>
+              <div class="details__card-list">
+                <h3 class="details__card-number">
+                 <?= setIngdata.listRount[2]; ?>
+                </h3>
+                <? if (setIngdata.listRount[2] > 1) {?>
+                  <div class="details__card-ws">
+                  <i class="bi bi-arrow-down-circle"></i>
+                </div>
+                <? } ?>
+              </div>
+          </div>
+
+          <div class="details__card">
+                <div class="details__card-icon">
+                  <i class="bi bi-bookmarks-fill"></i>
+                </div>
+                <p class="details__card-title">
+                  Ведение классных журналов</p>
+                 <div class="details__card-list">
+                <h3 class="details__card-number">
+                 <?= setIngdata.listRount[3]; ?>
+                </h3>
+                <? if (setIngdata.listRount[3] > 1) {?>
+                  <div class="details__card-ws">
+                  <i class="bi bi-arrow-down-circle"></i>
+                </div>
+                <? } ?>
+              </div>
+          </div>
+          <div class="details__card">
+                  <div class="details__card-icon">
+                    <i class="bi bi-bookmarks-fill"></i>
+                  </div>
+                  <p class="details__card-title">
+                    Своевременное выставление оценок</p>
+              <div class="details__card-list">
+                <h3 class="details__card-number">
+                 <?= setIngdata.listRount[4]; ?>
+                </h3>
+                <? if (setIngdata.listRount[4] > 1) {?>
+                  <div class="details__card-ws">
+                  <i class="bi bi-arrow-down-circle"></i>
+                </div>
+                <? } ?>
+              </div>
+          </div>
+          <div class="details__card">
+                    <div class="details__card-icon">
+                      <i class="bi bi-bookmarks-fill"></i>
+                    </div>
+                    <p class="details__card-title">
+                      Своевременная выдача ДЗ</p>
+              <div class="details__card-list">
+                <h3 class="details__card-number">
+                 <?= setIngdata.listRount[5]; ?>
+                </h3>
+                <? if (setIngdata.listRount[5] > 1) {?>
+                  <div class="details__card-ws">
+                  <i class="bi bi-arrow-down-circle"></i>
+                </div>
+                <? } ?>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="details__table">
+        <div class="loader"></div>
+
+         <div class="info-scholle">
+          </div>
+         <table>
+           <thead>
+              <tr>
+                <? for(let i=0; i < listApp.thead.length; i++) {?>
+                  <th><?= listApp.thead[i]; ?></th>
+                <? }?>
+              </tr>
+            </thead>
+            <tbody>
+              <? for(let i=0; i < listApp.tbody.length; i++) {?>
+                <tr>
+                 <? for(let x=0; x < listApp.tbody[i].length; x++) {?>
+                    <td> <?= listApp.tbody[i][x]; ?> </td>
+                 <? } ?>
+               </tr>
+              <? } ?>
+            </tbody>
+         </table>
+      </div>
+    </div>
+  </div>
+    <?!= include('script'); ?>
+    <?!= include('tableJS'); ?>
+ </body>
+</html>

@@ -1,0 +1,132 @@
+<script>
+  const text_isMaps  = document.querySelector('.isMaps'),
+        themeRESSS     = document.querySelector('.svg-themeRESSS'),
+        svg_maps     = document.querySelectorAll('#maps g'),
+        getGountsAll = document.querySelectorAll('#getCount'),
+        btn_list     = document.querySelectorAll('.wrapper__link'),
+        wrp_items    = document.querySelectorAll('.wrapper__dasboard-item'),
+        diagram      = document.querySelectorAll("#maps path"),
+        wrapper_dasboard = document.querySelectorAll('.wrapper__dasboard-infor');
+
+  google.script.run.withSuccessHandler(updateEtimate).maps_sheets(text_isMaps.innerText)
+  google.script.run.withSuccessHandler(resiltCalbac).makrosBlock(text_isMaps.innerText)
+
+  window.onload = function() {
+   init()
+  };
+
+
+
+  function init(){
+    wprStyle()
+    isIctiv(text_isMaps.innerText)
+    svgStyle(text_isMaps.innerText)
+    displayStyle()
+    animationSVG()
+    return;
+  }
+
+    function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+
+
+
+
+  function renderSvg(){
+    return  `
+      <animate class="eseas" attributeType="CSS" attributeName="opacity"  attributeName="y"
+      from="1" to="0" dur="${getRandomArbitrary(0.2,0.5)}s" repeatCount="3" />
+    `
+  }
+
+
+  function animationSVG() {
+    svg_maps.forEach((item,i) =>{
+        item.insertAdjacentHTML('beforeEnd',renderSvg())
+    })
+
+  }
+
+
+
+
+
+  function displayStyle(){
+    if(text_isMaps.innerText == 'Отчет Дневник' || text_isMaps.innerText == 'По республику' ){
+      return wrapper_dasboard.forEach(item => item.style.display = 'none')
+    }
+  }
+
+
+  function wprStyle(){
+    for(let i of wrp_items){
+      let number = Number((i.querySelector('span').innerText).split(" ")[0])
+      if(number <= 70){
+        i.style.background = '#FF4848'
+        i.style.border = '#FF4848'
+      }else if(number >= 70 && number <=  90){
+          i.style.background = '#FFB700'
+          i.style.border = '#FFB700'
+      }else{
+          i.style.background = '#1ceb26'
+          i.style.border = '#1ceb26'
+      }
+    }
+  }
+
+  function isIctiv(e){
+    for(let i=0; btn_list.length > i; i++){
+      if(btn_list[i].innerText.slice(0,3) == e.slice(0,3)){
+        btn_list[i].classList.add('activ')
+      }else{
+        btn_list[i].classList.remove('activ')
+      }
+    }
+  }
+
+  function updateEtimate(obj){
+    for(let key in obj){
+      if(obj.hasOwnProperty(key)){
+        let getElement = document.querySelector(`#${key} path`)
+        let getNumber = document.querySelector(`#${key} #number`)
+        styleMaps(getElement,getNumber,obj[key].avg_count)
+      }
+    }
+    return;
+  }
+ function styleMaps(getElement,getNumber,data){
+      if(data <= 70){
+        getElement.style.fill = '#FF4848'
+        getNumber.innerHTML = data
+      }
+      else if( data >= 70 && data <=  90 ){
+        getElement.style.fill = '#FFB700'
+        getNumber.innerHTML = data
+      }
+      else if( data >= 90 ){
+        getElement.style.fill = '#1ceb26'
+        getNumber.innerHTML = data
+      }
+      return;
+  }
+
+
+  function svgStyle(el){
+    if(el == "По республику" || el == "Отчет Дневник"){
+      return themeRESSS.style.display = 'none'
+    }
+    return  themeRESSS.style.display = 'block'
+  }
+
+    function resiltCalbac(el){
+      getGountsAll[1].innerHTML = el.getCount
+      getGountsAll[0].innerHTML = el.setCount
+      getGountsAll[2].innerHTML = el.sumCount
+      return;
+    }
+
+
+
+</script>

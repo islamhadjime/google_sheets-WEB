@@ -1,0 +1,156 @@
+<script>
+
+    let name_Sheets = document.querySelector('.isMaps')
+    let tableAppend = document.querySelector('.info-scholle')
+    let document_title = document.querySelector('thead')
+    let document_data = document.querySelectorAll('tbody tr');
+
+
+
+  function average(nums){
+        return Math.floor(nums.reduce((a,b)=> {return Number(a)+Number(b)})/nums.length)
+  }
+
+
+    for(let i=0; i < document_data.length; i++){
+      document_data[i].addEventListener('click',()=>{
+        if(name_Sheets.innerText != "По республику"){
+          let sorFilter = document_data[i].querySelectorAll('td')[1].innerText
+          document.querySelector('table').style.opacity = "0.1";
+          google.script.run.withSuccessHandler(filterTableS).filterSheets(name_Sheets.innerText,sorFilter)
+          document.querySelector('.loader').style.display = 'block'
+        }
+
+      })
+    }
+
+  function renderClose(){
+      let btn_table     = document.querySelector('.btn-cing');
+      btn_table.addEventListener('click',()=>{
+        document.querySelector('table').style.opacity = "1";
+        tableAppend.style.display = 'none'
+      })
+  }
+
+  function renderStyleHtml(){
+    let otem = document.querySelectorAll('.info-scholle-item')
+    for(let i=0; i< otem.length; i++){
+      let number = Number(otem[i].querySelector('.info-scholle-new-data').innerText)
+
+     if(number <= 70){
+        otem[i].style.background = '#FF4848'
+        otem[i].style.border = '#FF4848'
+      }else if(number >= 70 && number <=  90){
+          otem[i].style.background = '#FFB700'
+          otem[i].style.border = '#FFB700'
+      }else{
+          otem[i].style.background = '#1ceb26'
+         otem[i].style.border = '#1ceb26'
+      }
+    }
+
+  }
+
+
+    function renderItemHtml(title,count){
+      return  `
+                <div class="info-scholle-item">
+                   <div class="info-scholle-title">
+                      ${title}
+                    </div>
+                    <div class="info-scholle-new-data">
+                       ${count}
+                    </div>
+                 </div>`
+    }
+
+
+
+
+    function renderHtml(obj){
+        let a = 0;
+        let b = 0;
+        let rstCount = [ ...obj['filter'][0].slice(1,4),...obj['filter'][0].slice(6,8)]
+        if(name_Sheets.innerText != "Отчет Дневник"){
+           a = Number(obj['filter'][0][5].split(' ')[0])
+           b = Number(obj['filter'][0][5].split(' ')[2])
+        }
+
+
+
+
+      let $htmlCode = `<div class="swasdasdasd">
+                          <div class="info-scholle-totle">
+                            <h3> ${obj.filter[0][0]}</h3>
+                            <button class="btn btn-cing" type="button">
+                                <i class="bi bi-x-circle"></i>
+                            </button>
+                          </div>
+                          <div class="info-scholle-new-count">
+                            <div class="info-scholle-new-countTitle">
+                              <strong>Среднее значения</strong>
+                              <b>${average(rstCount)}</b>
+                            </div>
+
+                            <div class="info-scholle-new-countERS">
+                              <strong>Общий невыполненные работ</strong>
+                              <b>${b-a}</b>
+                            </div>
+                          </div>
+                       </div>`
+      tableAppend.innerHTML =  $htmlCode
+      let blockRoot = document.querySelector('.swasdasdasd')
+      obj.header[0].map((item,i) =>{
+        blockRoot.insertAdjacentHTML('afterend',renderItemHtml(item,obj.filter[0][i+1]))
+
+      })
+
+      renderStyleHtml()
+      renderClose()
+      return;
+
+    }
+
+    function filterTableS(obj){
+      if(obj){
+        if(document.querySelector('.loader').style.display == 'block'){
+            document.querySelector('.loader').style.display = 'none'
+            tableAppend.style.display = 'block'
+        }
+
+          return renderHtml(obj)
+
+      }
+
+    }
+
+
+
+
+
+    function table_style(){
+      let table_td = document.querySelectorAll('td')
+          for(let i=0; table_td.length >= i; i++){
+            try{
+              if ( (table_td[i].innerText).split(' ').length > 2){
+                table_td[i].style.backgroundColor= '#FFB700'
+              }
+              else if(Number(table_td[i].innerText) <= 56){
+                table_td[i].style.backgroundColor= '#FF4848'
+              }
+              else if(Number(table_td[i].innerText) >= 56 && Number(table_td[i].innerText) <= 90 ){
+                table_td[i].style.backgroundColor= '#FFB700'
+              }
+              else if(Number(table_td[i].innerText) >= 90){
+                table_td[i].style.backgroundColor= '#1ceb26'
+              }
+            }catch(err){
+              continue
+            }
+          }
+        }table_style();
+
+
+
+
+</script>
