@@ -2,9 +2,11 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Google Sheets WEB — это проект, готовое к работе на ,
-совместимое с автономным хранилищем,
+Google Sheets WEB — это проект, готовое 
+к работе на ,совместимое с автономным хранилищем,
 на базе Google Apps Script.
+##
+
 ![Alt-текст](https://github.com/islamhadjime/google_sheets-WEB/blob/main/gif/SC.jpg "Google Sheets WEBl")
 
 ## Функции
@@ -20,9 +22,7 @@ Google Sheets WEB — это проект, готовое к работе на ,
 > синтаксис форматирования должен сделать его читаемым
 > насколько это возможно. Идея состоит в том, что
 > Документ в формате Excel  должен быть
-> публикуется как есть, как обычный текст, без
-> похоже, что он был размечен тегами
-> или инструкции по форматированию.
+> удобным для скачивания и для просмотра
 
 
 ## Технология
