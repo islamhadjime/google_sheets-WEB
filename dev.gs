@@ -1,3 +1,4 @@
+// >>> MAKROS
 let makros = SpreadsheetApp
             .getActiveSpreadsheet()
 
@@ -10,24 +11,24 @@ function makros(){
     setCount:0
   }
 
-  let all_range = test.getRange("G3:G37").getValues()
+  let all_range = makros.getRange("G3:G37").getValues()
   all_range.map(item =>{
     sert_list.getCount += Number(item[0].split(' ')[0])
     sert_list.setCount += Number(item[0].split(' ')[2])
   })
   let setValue = `${sert_list.getCount} из ${sert_list.setCount}`
   sresz()
-  return test.getRange("G1").setValue(setValue)
+  return makros.getRange("G1").setValue(setValue)
 }
 
 
 function sresz(){
   let new_list = [];
-  let all_range = test.getRange("D3:D37").getValues();
+  let all_range = makros.getRange("D3:D37").getValues();
   all_range.forEach(item =>{
     new_list.push([String(...item).replace(".",",")])
   })
-  return test.getRange("D3:D37").setValues(new_list)
+  return makros.getRange("D3:D37").setValues(new_list)
 }
 
 let rs_arry = [
