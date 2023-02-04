@@ -1,36 +1,3 @@
-let test = SpreadsheetApp
-            .getActiveSpreadsheet()
-
-
-function makros(){
-
-
-  let sert_list = {
-    getCount:0,
-    setCount:0
-  }
-
-  let all_range = test.getRange("G3:G37").getValues()
-  all_range.map(item =>{
-    sert_list.getCount += Number(item[0].split(' ')[0])
-    sert_list.setCount += Number(item[0].split(' ')[2])
-  })
-  let setValue = `${sert_list.getCount} из ${sert_list.setCount}`
-  sresz()
-  return test.getRange("G1").setValue(setValue)
-}
-
-
-function sresz(){
-  let new_list = [];
-  let all_range = test.getRange("D3:D37").getValues();
-  all_range.forEach(item =>{
-    new_list.push([String(...item).replace(".",",")])
-  })
-  return test.getRange("D3:D37").setValues(new_list)
-}
-
-
 
 
 let rs_arry = [
@@ -125,7 +92,6 @@ function maps_sheets(evenDay){
   let object_all = {}
   let all_range = app.getRange(3,2,app.getLastRow()-2,8).getValues()
   let new_list = all_range.map(element => {return [...element.slice(0,5), ...element.slice(6,8)]})
-  // ==== Не удаляй rs_arry
   for(let item in rs_arry){
     let a = new_list.filter(el => { return search_rs(el[0].split(" "),rs_arry[item].city) })
     if(a.length != 0){
