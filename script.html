@@ -14,9 +14,7 @@
   window.onload = function() {
    init()
   };
-
-
-
+  
   function init(){
     wprStyle()
     isIctiv(text_isMaps.innerText)
@@ -25,14 +23,10 @@
     animationSVG()
     return;
   }
-
-    function getRandomArbitrary(min, max) {
+  
+   function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
   }
-
-
-
-
 
   function renderSvg(){
     return  `
@@ -48,10 +42,6 @@
     })
 
   }
-
-
-
-
 
   function displayStyle(){
     if(text_isMaps.innerText == 'Отчет Дневник' || text_isMaps.innerText == 'По республику' ){
@@ -120,13 +110,11 @@
     return  themeRESSS.style.display = 'block'
   }
 
-    function resiltCalbac(el){
+  function resiltCalbac(el){
       getGountsAll[1].innerHTML = el.getCount
       getGountsAll[0].innerHTML = el.setCount
       getGountsAll[2].innerHTML = el.sumCount
       return;
     }
-
-
 
 </script>
