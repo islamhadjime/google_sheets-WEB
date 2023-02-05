@@ -126,10 +126,10 @@ function maps_sheets(evenDay){
   for(let item in rs_arry){
     let a = new_list.filter(el => { return search_rs(el[0].split(" "),rs_arry[item].city) })
     if(a.length != 0){
-      let fuck_mass = a.map(fack_item =>{ return fack_item.slice(1,fack_item.length)})
+      let elements = a.map(item_in =>{ return item_in.slice(1,item_in.length)})
       object_all[rs_arry[item].id] ={
         id:rs_arry[item].id,
-        count:fuck_mass
+        count:elements
       }
     }
   }
@@ -220,11 +220,6 @@ function filterSheets(evenDay,getEval){
   return {header,filter}
 
 }
-
-
-
-
-
 
 
 function include(filename){
