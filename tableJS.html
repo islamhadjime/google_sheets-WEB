@@ -5,14 +5,11 @@
     let document_title = document.querySelector('thead')
     let document_data = document.querySelectorAll('tbody tr');
 
-
-
   function average(nums){
         return Math.floor(nums.reduce((a,b)=> {return Number(a)+Number(b)})/nums.length)
   }
 
-
-    for(let i=0; i < document_data.length; i++){
+  for(let i=0; i < document_data.length; i++){
       document_data[i].addEventListener('click',()=>{
         if(name_Sheets.innerText != "По республику"){
           let sorFilter = document_data[i].querySelectorAll('td')[1].innerText
@@ -51,8 +48,7 @@
 
   }
 
-
-    function renderItemHtml(title,count){
+  function renderItemHtml(title,count){
       return  `
                 <div class="info-scholle-item">
                    <div class="info-scholle-title">
@@ -65,8 +61,6 @@
     }
 
 
-
-
     function renderHtml(obj){
         let a = 0;
         let b = 0;
@@ -74,12 +68,9 @@
         if(name_Sheets.innerText != "Отчет Дневник"){
            a = Number(obj['filter'][0][5].split(' ')[0])
            b = Number(obj['filter'][0][5].split(' ')[2])
-        }
+    }
 
-
-
-
-      let $htmlCode = `<div class="swasdasdasd">
+   let $htmlCode = `<div class="swasdasdasd">
                           <div class="info-scholle-totle">
                             <h3> ${obj.filter[0][0]}</h3>
                             <button class="btn btn-cing" type="button">
@@ -124,10 +115,6 @@
 
     }
 
-
-
-
-
     function table_style(){
       let table_td = document.querySelectorAll('td')
           for(let i=0; table_td.length >= i; i++){
@@ -149,8 +136,5 @@
             }
           }
         }table_style();
-
-
-
 
 </script>
